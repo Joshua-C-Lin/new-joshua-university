@@ -198,6 +198,7 @@ __webpack_require__.r(__webpack_exports__);
 class Search {
   // 1. describe and create/initiate our object
   constructor() {
+    alert('123');
     this.addSearchHTML();
     this.resultsDiv = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#search-overlay__results");
     this.openButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".js-search-trigger");
