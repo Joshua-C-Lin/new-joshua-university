@@ -204,22 +204,30 @@ class MyNotes {
   }
   events() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-note").on("click", e => this.deleteNote(e));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-note").on("click", e => this.editNote(e));
   }
 
   // Methods will go here
-  deleteNote() {
+  editNote(e) {
+    var thisNote = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parents("li");
+    thisNote.find(".note-title-field, .note-body-field").removeAttr("readonly").addClass("note-active-field");
+    thisNote.find(".update-note").addClass("update-note--visible");
+  }
+  deleteNote(e) {
+    var thisNote = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parents("li");
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       beforeSend: xhr => {
-        xhr.setRequestHeader('X-WP-Nonce', universityData.nonce);
+        xhr.setRequestHeader("X-WP-Nonce", universityData.nonce);
       },
-      url: universityData.root_url + '/wp-json/wp/v2/note/120',
-      type: 'DELETE',
+      url: universityData.root_url + "/wp-json/wp/v2/note/" + thisNote.data("id"),
+      type: "DELETE",
       success: response => {
-        console.log('Congrats');
+        thisNote.slideUp();
+        console.log("Congrats");
         console.log(response);
       },
       error: response => {
-        console.log('Sorry');
+        console.log("Sorry");
         console.log(response);
       }
     });
