@@ -21,7 +21,7 @@ while (have_posts()) {
         <ul class="min-list link-list" id="my-notes">
             <?php
                 $userNotes = new WP_Query(array(
-                    'post-type' => 'note',
+                    'post_type' => 'note',
                     'post_per-page'=> -1,
                     'author'=> get_current_user_id()
                 ));
